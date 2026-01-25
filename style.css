@@ -1,0 +1,188 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+/* 导航栏 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.7); /* 黑色且透明 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px; /* Logo 大小调整 */
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.site-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ddd;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.auth-links {
+    font-size: 16px;
+}
+
+.auth-links a {
+    text-decoration: none;
+    color: #ddd;
+    margin: 0 5px;
+}
+
+/* Hero 区域 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 占满所有空白 */
+    background: url('images/starry_night.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 遮罩，让文字更清晰 */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* 标准速查区域 */
+.standards-section {
+    padding: 60px 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.standards-section h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.standards-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.standard-card {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 30px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.standard-card.basic .card-header { border-color: #4a90e2; }
+.standard-card.advanced .card-header { border-color: #f5a623; }
+
+.standard-card h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.standard-card.basic h3 { color: #4a90e2; }
+.standard-card.advanced h3 { color: #f5a623; }
+
+.score {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+}
+
+.standard-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.standard-card li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.standard-card li::before {
+    content: "•";
+    color: #999;
+    margin-right: 10px;
+}
