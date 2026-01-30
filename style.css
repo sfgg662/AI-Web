@@ -17,7 +17,7 @@ body {
     left: 0;
     width: 100%;
     height: 70px;
-    background-color: rgba(53, 56, 54, 0.848); /* 白色且透明 */
+    background-color: rgba(93, 123, 103, 0.848); /* 白色且透明 */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,8 +77,8 @@ html, body {
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    background-image: url('WechatIMG230.jpg');
+    min-height:100vh;
+    background-image: url('WechatIMG230 1.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -191,4 +191,32 @@ html, body {
     content: "•";
     color: #999;
     margin-right: 10px;
+}
+/* 导航按钮：悬浮下划线效果（下划线为黑色）*/
+.nav-button {
+    position: relative;
+    color: #ddd;
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color .18s ease;
+    outline: none;
+}
+.nav-button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 0;
+    height: 3px;
+    background: #000;
+    transform: translateX(-50%);
+    transition: width .22s ease;
+}
+.nav-button:hover::after,
+.nav-button:focus::after {
+    width: 60%; /* 下划线长度，可按需调整为 40%~80% */
+}
+.nav-button:hover,
+.nav-button:focus {
+    color: #fff;
 }

@@ -1,0 +1,172 @@
+/* 基本布局 */
+* {box-sizing: border-box;}
+html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;background:#fff;color:#000;}
+.subpage-header {padding:24px 20px;text-align:center;border-bottom:1px solid #eee;}
+.subpage-header h1 {margin:8px 0;font-size:28px;}
+.back-link {position:absolute;left:16px;top:20px;color:#333;text-decoration:none;}
+.subpage-content {max-width:900px;margin:48px auto;padding:0 20px;font-size:18px;line-height:1.8;}
+/* QA 对话框样式 */
+.qa-box {
+  width: 90%;
+  max-width: 900px;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #000;
+  text-align: left;
+}
+
+.qa-label {
+  font-weight: 600;
+  color: #000;
+}
+.qa-input {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #111;
+}
+
+.qa-btn {
+  width: 120px;
+  padding: 10px 14px;
+  background: #0b79d0;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.qa-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.qa-answer {
+  min-height: 140px;
+  padding: 12px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* 保证 hero 内容居中（如果已有则可合并）*/
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.subpage-header { position: relative; }
+.header-buttons {
+  position: absolute;
+  left: 80px;
+  top: 64px; /* 从 18px 调整到 64px，按钮下移到标题下方 */
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+/* 新增：审题立意页标题下方的按钮组样式 */
+.header-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subpage-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .12s ease, color .12s ease;
+}
+.subpage-btn:hover { transform: translateY(-3px); color: #000; }
+
+.subpage-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg,#070707,#080808);
+  transform: translateX(-50%) translateY(6px);
+  transition: width .22s ease, transform .18s ease, opacity .18s;
+  opacity: 0;
+  border-radius: 2px;
+}
+.subpage-btn:active::after,
+.subpage-btn.active::after {
+  width: 56%;
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  box-shadow: 0 8px 18px rgba(11,121,208,0.12);
+}
+
+/* 小屏改为流式排列，避免遮挡 */
+@media (max-width: 600px) {
+  .header-buttons {
+    position: static;
+    margin: 12px 0 0;
+    left: auto;
+    top: auto;
+    justify-content: center;
+  }
+  .header-actions { width: 100%; justify-content: center; }
+}
+
+
+.header-btn {
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  padding: 6px 4px;
+  font-weight: 600;
+  transition: color .18s ease;
+}
+
+.header-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background: #000;
+  transform: translateX(-50%);
+  transition: width .22s ease;
+}
+.header-btn:hover::after,
+.header-btn:focus::after {
+  width: 60%;
+}
+
+.header-btn:hover,
+.header-btn:focus {
+  color: #000;
+}
