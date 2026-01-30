@@ -57,6 +57,8 @@ body {
 
 .nav-links a:hover {
     color: white;
+    text-decoration: underline;
+    text-underline-offset: 8px;
 }
 
 .auth-links {
@@ -67,6 +69,13 @@ body {
     text-decoration: none;
     color: #ddd;
     margin: 0 5px;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 8px;
 }
 
 /* Hero 区域 */
