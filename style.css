@@ -38,7 +38,7 @@ body {
 }
 
 .site-name {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -51,7 +51,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: #ddd;
-    font-size: 16px;
+    font-size: 18px;
     transition: color 0.3s;
 }
 
@@ -60,7 +60,7 @@ body {
 }
 
 .auth-links {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .auth-links a {
@@ -106,15 +106,34 @@ html, body {
 }
 
 .hero-content h1 {
-    font-size: 48px;
+    font-size: 56px;
     margin-bottom: 20px;
     letter-spacing: 2px;
 }
 
 .hero-content p {
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: 22px;
+    line-height: 1.7;
     margin-bottom: 30px;
+}
+
+.cta-button{
+    display:inline-block;
+    background:#0b79d0;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:600;
+    transition:filter .18s ease, transform .18s ease;
+}
+.cta-button:hover{
+    filter:brightness(1.05);
+    transform:translateY(-1px);
+}
+.cta-button:active{
+    transform:translateY(0);
 }
 
 /* 标准速查区域 */
@@ -125,7 +144,7 @@ html, body {
 }
 
 .standards-section h2 {
-    font-size: 32px;
+    font-size: 36px;
     margin-bottom: 40px;
     color: #333;
 }
@@ -161,7 +180,7 @@ html, body {
 
 .standard-card h3 {
     margin: 0;
-    font-size: 22px;
+    font-size: 24px;
     color: #333;
 }
 
@@ -169,7 +188,7 @@ html, body {
 .standard-card.advanced h3 { color: #f5a623; }
 
 .score {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #555;
 }
@@ -180,7 +199,7 @@ html, body {
 }
 
 .standard-card li {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 10px;
     color: #666;
     display: flex;

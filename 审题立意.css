@@ -2,9 +2,9 @@
 * {box-sizing: border-box;}
 html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;background:#fff;color:#000;}
 .subpage-header {padding:24px 20px;text-align:center;border-bottom:1px solid #eee;}
-.subpage-header h1 {margin:8px 0;font-size:28px;}
+.subpage-header h1 {margin:8px 0;font-size:32px;}
 .back-link {position:absolute;left:16px;top:20px;color:#333;text-decoration:none;}
-.subpage-content {max-width:900px;margin:48px auto;padding:0 20px;font-size:18px;line-height:1.8;}
+.subpage-content {max-width:900px;margin:48px auto;padding:0 20px;font-size:20px;line-height:1.9;}
 /* QA 对话框样式 */
 .qa-box {
   width: 90%;
@@ -31,7 +31,7 @@ html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;backgro
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 18px;
   font-family: inherit;
   color: #111;
 }
@@ -59,7 +59,7 @@ html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;backgro
   border-radius: 6px;
   white-space: pre-wrap;
   color: #000;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.7;
 }
 
@@ -93,13 +93,60 @@ html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;backgro
   justify-content: flex-start;
 }
 
+/* 圆形导航按钮（替代原来的三个按钮） */
+.circle-actions{
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+}
+
+.circle-btn{
+  width: 164px;
+  height: 164px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 19px;
+  color: #111;
+  background: #fff;
+  border: 2px solid #111;
+  transition: transform .14s ease, box-shadow .14s ease, background .14s ease;
+  user-select: none;
+}
+
+@keyframes circle-bounce {
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  70% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
+}
+
+.circle-btn:hover,
+.circle-btn:focus-visible{
+  background: #f7f7f7;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.14);
+  animation: circle-bounce .36s ease-in-out;
+}
+
+.circle-btn:active{
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  animation: none;
+}
+
 .subpage-btn {
   position: relative;
   background: transparent;
   border: none;
   padding: 8px 14px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
   border-radius: 8px;
   cursor: pointer;
@@ -138,6 +185,9 @@ html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;backgro
     justify-content: center;
   }
   .header-actions { width: 100%; justify-content: center; }
+
+  .circle-actions{gap:24px}
+  .circle-btn{width:130px;height:130px;font-size:16px}
 }
 
 

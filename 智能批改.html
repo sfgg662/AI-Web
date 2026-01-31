@@ -9,8 +9,17 @@
     html,body{height:100%;margin:0;font-family: 'Microsoft YaHei',sans-serif;background:#f6f8fb}
     .center-wrap{min-height:100%;display:flex;align-items:center;justify-content:center}
     .card{width:92%;max-width:820px;background:#fff;padding:22px;border-radius:12px;box-shadow:0 12px 30px rgba(23,42,77,0.06)}
+    .subpage-header{position:relative;padding:24px 20px;text-align:center;border-bottom:1px solid #eee}
+    .subpage-header h1{margin:8px 0;font-size:32px}
+    .back-link{position:absolute;left:16px;top:20px;color:#333;text-decoration:none}
+    .header-actions{margin-top:8px;display:flex;gap:12px;align-items:center;justify-content:flex-start}
+    .subpage-btn{position:relative;background:transparent;border:none;padding:8px 14px;font-weight:700;font-size:18px;color:#333;border-radius:8px;cursor:pointer;text-decoration:none;transition:transform .12s ease,color .12s ease}
+    .subpage-btn:hover{transform:translateY(-3px);color:#000}
+    .subpage-btn::after{content:"";position:absolute;left:50%;bottom:-8px;width:0;height:4px;background:linear-gradient(90deg,#070707,#080808);transform:translateX(-50%) translateY(6px);transition:width .22s ease,transform .18s ease,opacity .18s;opacity:0;border-radius:2px}
+    .subpage-btn:active::after,.subpage-btn.active::after{width:56%;transform:translateX(-50%) translateY(0);opacity:1;box-shadow:0 8px 18px rgba(11,121,208,0.12)}
+    @media (max-width:600px){.header-actions{width:100%;justify-content:center}}
     .field{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-    textarea{width:100%;min-height:110px;padding:10px;border:1px solid #e6e9ef;border-radius:8px;font-size:15px}
+    textarea{width:100%;min-height:110px;padding:10px;border:1px solid #e6e9ef;border-radius:8px;font-size:18px}
     .row-with-btn{display:flex;gap:10px;align-items:flex-start}
     .row-with-btn textarea{flex:1}
     .btn-primary{background:#0b79d0;border:none;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer}
@@ -20,15 +29,23 @@
 <body>
   <div class="center-wrap">
     <div class="card">
-      <h2 style="margin:0 0 12px">智能批改</h2>
+      <header class="subpage-header">
+        <a class="back-link" href="index.html">← 返回首页</a>
+        <h1>智能批改</h1>
+        <div class="header-actions">
+          <button id="btn-ai" class="subpage-btn">AI审题</button>
+          <button id="btn-review" class="subpage-btn">智能批改</button>
+          <button id="btn-repo" class="subpage-btn">知识仓库</button>
+        </div>
+      </header>
 
       <div class="field">
-        <label>原题（提示词）</label>
+        <label>原题</label>
         <textarea id="originalInput" placeholder="请输入原题"></textarea>
       </div>
 
       <div class="field">
-        <label>你的立意（提示词）</label>
+        <label>你的立意</label>
         <textarea id="ideaInput" placeholder="请输入你的立意"></textarea>
         <div style="margin-top:8px; display:flex; justify-content:flex-end;">
           <button id="generateBtn" class="btn-primary" style="padding:10px 16px;">生成</button>
@@ -44,6 +61,53 @@
     </div>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const headerBtns = document.querySelectorAll('.subpage-btn');
+      const map = {
+        'btn-ai': '审题立意.html',
+        'btn-review': '智能批改.html',
+        'btn-repo': '知识仓库.html'
+      };
+
+      const headerActions = document.querySelector('.header-actions');
+
+      headerBtns.forEach(b => {
+        b.addEventListener('click', (e) => {
+          headerBtns.forEach(x => x.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          const id = e.currentTarget.id;
+          const target = map[id];
+          if (target) {
+            setTimeout(() => {
+              headerBtns.forEach(x => x.classList.remove('active'));
+              window.location.href = target;
+            }, 220);
+          } else {
+            setTimeout(() => headerBtns.forEach(x => x.classList.remove('active')), 220);
+          }
+        });
+
+        b.addEventListener('blur', () => b.classList.remove('active'));
+      });
+
+      if (headerActions) {
+        headerActions.addEventListener('mouseleave', () => {
+          headerBtns.forEach(x => x.classList.remove('active'));
+        });
+      }
+
+      try {
+        const path = window.location.pathname.split('/').pop();
+        for (const [id, p] of Object.entries(map)) {
+          if (p === path) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+          }
+        }
+      } catch (e) {}
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -11,101 +11,15 @@
   <header class="subpage-header">
     <a class="back-link" href="index.html">← 返回首页</a>
     <h1>审题立意训练</h1>
-    <div class="header-actions" style="margin-top:8px; display:flex; gap:8px; align-items:center;">
-      <button id="btn-ai" class="subpage-btn">AI审题</button>
-      <button id="btn-review" class="subpage-btn">智能批改</button>
-      <button id="btn-repo" class="subpage-btn">知识仓库</button>
-    </div>
   </header>
  <main class="subpage-content">
     <div class="hero-content">
-      <div class="qa-box">
-        <label class="qa-label" for="promptInput">请输入作文考题</label>
-        <textarea id="promptInput" class="qa-input" placeholder="在此输入考题或题目要点"></textarea>
-
-        <label class="qa-label" for="answerBox">AI 回答</label>
-         <textarea id="answerBox" class="qa-input qa-answer" readonly></textarea>
-
-        <button id="generateBtn" class="qa-btn">生成</button>
-      </div>
+      <nav class="circle-actions" aria-label="功能导航">
+        <a class="circle-btn" href="AI审题.html">AI审题</a>
+        <a class="circle-btn" href="智能批改.html">智能批改</a>
+        <a class="circle-btn" href="知识仓库.html">知识仓库</a>
+      </nav>
     </div>
   </main>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('generateBtn');
-      const input = document.getElementById('promptInput');
-      const answer = document.getElementById('answerBox');
-
-      btn.addEventListener('click', async () => {
-        const prompt = input.value.trim();
-        if (!prompt) {
-          answer.value = '请先输入作文考题后再生成。';
-          return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = '生成中...';
-        answer.value = '正在生成，请稍候...';
-
-        await new Promise(r => setTimeout(r, 900));
-
-        const simulated = `【题目】 ${prompt}\n\n【AI 分析】 从题目中提炼主题、角度与立意方向；可从价值、责任、方法等角度切入。\n\n【写作建议】 示例提纲：开头点题 → 分论点展开 → 结尾升华。`;
-        answer.value = simulated;
-
-        btn.disabled = false;
-        btn.textContent = '生成';
-      });
-
-      // 标题下方按钮点击：切换 active 并跳转到对应页面
-      const headerBtns = document.querySelectorAll('.subpage-btn');
-      const map = {
-        'btn-ai': '审题立意.html',
-        'btn-review': '智能批改.html',
-        'btn-repo': '知识仓库.html'
-      };
-
-      const headerActions = document.querySelector('.header-actions');
-
-      headerBtns.forEach(b => {
-        b.addEventListener('click', (e) => {
-          headerBtns.forEach(x => x.classList.remove('active'));
-          e.currentTarget.classList.add('active');
-          const id = e.currentTarget.id;
-          const target = map[id];
-          if (target) {
-            // 在导航前短暂保留效果，然后清除（若在同页点击也会清除）
-            setTimeout(() => {
-              headerBtns.forEach(x => x.classList.remove('active'));
-              window.location.href = target;
-            }, 220);
-          } else {
-            // 若无跳转，仅短暂高亮后清除
-            setTimeout(() => headerBtns.forEach(x => x.classList.remove('active')), 220);
-          }
-        });
-
-        // 键盘或失焦时移除效果
-        b.addEventListener('blur', () => b.classList.remove('active'));
-      });
-
-      // 鼠标离开按钮区域时移除悬浮直线
-      if (headerActions) {
-        headerActions.addEventListener('mouseleave', () => {
-          headerBtns.forEach(x => x.classList.remove('active'));
-        });
-      }
-
-      // 页面加载时，根据当前路径高亮对应按钮（若匹配）
-      try {
-        const path = window.location.pathname.split('/').pop();
-        for (const [id, p] of Object.entries(map)) {
-          if (p === path) {
-            const el = document.getElementById(id);
-            if (el) el.classList.add('active');
-          }
-        }
-      } catch (e) {}
-    });
-  </script>
 </body>
 </html>

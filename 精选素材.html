@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>精选素材</title>
+  <style>
+    html,body{height:100%}
+    body{font-family:'Microsoft YaHei',sans-serif;margin:0;background:#f6f8fb;color:#111}
+    .container{max-width:1000px;margin:40px auto;padding:0 20px}
+    .back-link{display:inline-block;margin-bottom:16px;color:#333;text-decoration:none}
+    h1{margin:0 0 16px;font-size:32px;color:#111}
+    /* 2x2 网格，四个矩形等尺寸且均匀分布 */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(260px,1fr));
+      grid-auto-rows:200px; /* 固定高度保证一致 */
+      gap:24px;
+      min-height:60vh; /* 给足空间以便均匀分布 */
+      align-content:space-evenly;
+      justify-content:space-evenly;
+    }
+    .tile{
+      background:#fff;
+      border:1px solid #e6e9ef;
+      border-radius:12px;
+      box-shadow:0 12px 30px rgba(23,42,77,0.06);
+      cursor:pointer;
+      transition:transform .14s ease, box-shadow .14s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      text-decoration:none;
+      width:100%;
+      height:100%;
+    }
+    .tile-content{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;color:#111}
+    .tile-title{font-weight:800;font-size:20px;margin-bottom:8px;color:#000}
+    .tile-desc{font-size:16px;color:#222}
+    .tile:hover,.tile:focus{
+      transform:translateY(-4px) scale(1.01);
+      box-shadow:0 16px 36px rgba(23,42,77,0.1);
+      outline:none;
+    }
+    .tile:active{
+      transform:translateY(-2px) scale(1.005);
+      box-shadow:0 12px 30px rgba(23,42,77,0.08);
+    }
+    @media (max-width:600px){
+      .grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px;gap:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="index.html">← 返回首页</a>
+    <h1>精选素材</h1>
+    <div class="grid">
+      <a class="tile" href="素材检索.html" aria-label="素材检索">
+        <div class="tile-content">
+          <div class="tile-title">素材检索</div>
+          <div class="tile-desc">请直接搜索你想要的素材</div>
+        </div>
+      </a>
+      <a class="tile" href="素材定制.html" aria-label="素材定制">
+        <div class="tile-content">
+          <div class="tile-title">素材定制</div>
+          <div class="tile-desc">AI为你量身定制素材</div>
+        </div>
+      </a>
+      <a class="tile" href="素材模版.html" aria-label="素材模版">
+        <div class="tile-content">
+          <div class="tile-title">素材模版</div>
+          <div class="tile-desc">学习常见的素材模版</div>
+        </div>
+      </a>
+      <a class="tile" href="素材优化.html" aria-label="素材优化">
+        <div class="tile-content">
+          <div class="tile-title">素材优化</div>
+          <div class="tile-desc">AI批改助力素材优化</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

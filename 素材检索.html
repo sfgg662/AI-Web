@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>素材检索</title>
+  <style>
+    html,body{height:100%}
+    body{font-family:'Microsoft YaHei',sans-serif;margin:0;background:#f6f8fb;color:#111}
+    .container{max-width:900px;margin:40px auto;padding:0 20px}
+    .back-link{display:inline-block;margin-bottom:16px;color:#333;text-decoration:none}
+    .search-box{background:#fff;padding:18px;border:1px solid #e6e9ef;border-radius:10px;box-shadow:0 12px 30px rgba(23,42,77,0.06)}
+    .search-row{display:flex;gap:10px;align-items:center}
+    .search-row input{flex:1;padding:10px;border:1px solid #e6e9ef;border-radius:8px;font-size:15px}
+    .btn{background:#0b79d0;border:none;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer}
+    .result{margin-top:14px;color:#555}
+    .suggestions{margin-top:16px;color:#666;font-size:14px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .tag{background:#eef3ff;border:1px solid #cfe0ff;color:#1b3a57;padding:6px 10px;border-radius:14px;cursor:pointer;font-size:13px}
+    .tag:hover{background:#e0ecff}
+    .tag.selected{background:#d9ebff;border-color:#8ec3ff;color:#0b3b6b}
+    .tag-controls{display:flex;gap:10px;margin-top:10px}
+    .ctrl-button{background:#f0f4ff;border:1px solid #cfe0ff;color:#0b3b6b;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:13px}
+    .ctrl-button:hover{background:#e4edff}
+    .type-line{margin-top:10px;color:#666;font-size:14px}
+    .output-label{margin-top:14px;color:#333;font-size:14px}
+    .output-box{width:100%;min-height:220px;margin-top:8px;padding:12px;border:1px solid #e6e9ef;border-radius:10px;background:#fff;resize:vertical;font-size:14px;line-height:1.6;color:#111}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="精选素材.html">← 返回精选素材</a>
+    <h1>素材检索</h1>
+    <div class="search-box">
+      <div class="search-row">
+        <input id="q" placeholder="输入关键词，例如：责任、创新、坚毅">
+        <button class="btn" id="go">搜索</button>
+      </div>
+    </div>
+    <div class="suggestions">
+      可供参考的主题：
+      <div class="tags">
+        <button class="tag" type="button">家国情怀</button>
+        <button class="tag" type="button">成长感悟</button>
+        <button class="tag" type="button">科技人文</button>
+        <button class="tag" type="button">责任担当</button>
+        <button class="tag" type="button">理想信念</button>
+        <button class="tag" type="button">文化传承</button>
+        <button class="tag" type="button">时代发展</button>
+      </div>
+      <div class="type-line">
+        素材的类型：
+        <div class="tags">
+          <button class="tag" type="button">名人名言</button>
+          <button class="tag" type="button">热点事件</button>
+          <button class="tag" type="button">经典事例</button>
+        </div>
+      </div>
+      <div class="tag-controls">
+        <button id="selectAllBtn" class="ctrl-button" type="button">全选</button>
+        <button id="clearBtn" class="ctrl-button" type="button">清空选择</button>
+      </div>
+      <div class="output-label">检索结果：</div>
+      <textarea id="output" class="output-box" placeholder="AI将在此展示检索到的素材……"></textarea>
+    </div>
+  </div>
+  <script>
+    const qInput = document.getElementById('q');
+    const tags = Array.from(document.querySelectorAll('.tag'));
+    const selectAllBtn = document.getElementById('selectAllBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function getSelectedTags(){
+      return tags.filter(t=>t.classList.contains('selected')).map(t=>t.textContent.trim());
+    }
+    function isAllSelected(){
+      return tags.length > 0 && tags.every(t=>t.classList.contains('selected'));
+    }
+    function updateSelectAllLabel(){
+      selectAllBtn.textContent = isAllSelected() ? '取消全选' : '全选';
+    }
+    function syncInput(){
+      qInput.value = getSelectedTags().join('、');
+    }
+
+    // 搜索按钮：输入为空时使用所选标签
+    document.getElementById('go').addEventListener('click',()=>{
+      const q = qInput.value.trim();
+      const selected = getSelectedTags();
+      const finalQ = q || (selected.length ? selected.join('、') : '');
+      if(finalQ) qInput.value = finalQ;
+      const output = document.getElementById('output');
+      if(output){
+        output.value = finalQ
+          ? `搜索关键词：${finalQ}\n\n示例素材：\n1. （占位）围绕“${finalQ}”的相关素材条目。\n2. （占位）可在此接入真实检索或AI生成结果。\n\n提示：可继续添加或筛选主题，以优化检索结果。`
+          : '';
+      }
+    });
+
+    // 标签点击：切换选中并同步输入框、更新“全选”文案
+    tags.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        btn.classList.toggle('selected');
+        syncInput();
+        updateSelectAllLabel();
+      });
+    });
+
+    // 全选 / 取消全选
+    selectAllBtn.addEventListener('click',()=>{
+      const all = isAllSelected();
+      tags.forEach(t=>t.classList.toggle('selected', !all));
+      syncInput();
+      updateSelectAllLabel();
+    });
+
+    // 清空选择
+    clearBtn.addEventListener('click',()=>{
+      tags.forEach(t=>t.classList.remove('selected'));
+      qInput.value = '';
+      updateSelectAllLabel();
+      const output = document.getElementById('output');
+      if(output){
+        output.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
